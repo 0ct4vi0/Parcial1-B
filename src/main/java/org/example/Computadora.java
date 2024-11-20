@@ -7,17 +7,14 @@ public class Computadora {
     private double precioTotal;
     private double porcentajeAumento;
     private double montoFinal;
-    private String [][] componentes;
+    private String[][] componentes;
 
+    public Computadora() {
 
-    public Computadora(String marca, String modelo, long codigoBarras, double precioTotal, double porcentajeAumento, double montoFinal, String[][] componentes) {
-        this.marca=marca;
-        this.modelo=modelo;
-        this.codigoBarras = codigoBarras;
-        this.precioTotal=precioTotal;
-        this.porcentajeAumento=porcentajeAumento;
-        this.montoFinal=montoFinal;
-        this.componentes = componentes;
+    }
+
+    public void  agregarComponentes(int cantidad){
+        componentes= new  String[cantidad][4];
     }
 
     public String getMarca() {
