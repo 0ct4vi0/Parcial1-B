@@ -10,9 +10,7 @@ public class Computadora {
     private String[][] componentes;
 
     public Computadora() {
-
     }
-
     public void  agregarComponentes(int cantidad){
         componentes= new  String[cantidad][4];
     }

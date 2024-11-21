@@ -51,8 +51,58 @@ public class GenerarPc {
 
         for (String[] componente : computadora.getComponentes()) {
             System.out.println(String.join(", ", componente));
+
+
+            boolean faltaObligatorio = false;
+            for (String[] componente : componentesPc) {
+                if (componente[3].equals("S")) {
+                    boolean encontrado = false;
+                    for (String[] agregado : computadora.getComponentes()) {
+                        if (agregado != null && agregado[0].equals(componente[0])) {
+                            encontrado = true;
+                            break;
+                        }
+                    }
+                    if (!encontrado) {
+                        faltaObligatorio = true;
+                        break;
+                    }
+                }
+            }
+
+            if (faltaObligatorio) {
+                System.out.println("Atención, 1 o más componentes obligatorios no fueron agregados. Se cobrará un recargo del 20%.");
+            }
+
+            // f) Calcular monto final
+            double total = 0;
+            for (String[] componente : computadora.getComponentes()) {
+                if (componente != null) {
+                    total += Double.parseDouble(componente[2]);
+                }
+            }
+
+            double recargo = faltaObligatorio ? total * 0.2 : 0;
+            double montoFinal = total + recargo;
+
+            // g) Mostrar resultados
+            System.out.println("\nLa computadora especificada es:");
+            System.out.println("Marca: " + computadora.getMarca());
+            System.out.println("Modelo: " + computadora.getModelo());
+            System.out.println("Código de Barras: " + computadora.getCodigoBarras());
+            System.out.println("\nComponentes:");
+            for (String[] componente : computadora.getComponentes()) {
+                if (componente != null) {
+                    System.out.printf("%s %s %s\n", componente[0], componente[1], componente[2]);
+                }
+            }
+            System.out.println("Total Componentes: " + total);
+            System.out.println("Recargo: " + recargo);
+            System.out.println("Monto Final: " + montoFinal);
+        }
         }
     }
+//---------------------------------------------METODOS------------------------------------------------------------------
 
     public static void  cargaCodigoDeBarra(Computadora computadora, Scanner sc){
         long codigoDeBarra;
